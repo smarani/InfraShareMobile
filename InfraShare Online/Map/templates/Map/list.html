@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+        <head>
+                <meta charset="utf-8">
+                <title>Django File Upload Example</title>
+        </head>
+
+        <body>
+                <!-- List of uploaded documents -->
+  <!--               {% if documents %}
+                        <ul>
+                        {% for document in documents %}
+                                <li><a href="{{ document.infragram_image.url }}">{{ document.infragram_image.name }}
+                                <img src="{{ document.infragram_image.url }}" alt="{{ document.infragram_image.name }}">
+                                </a></li>
+                        {% endfor %}
+                        </ul>
+                {% else %}
+                        <p>No documents.</p>
+                {% endif %} -->
+
+                <!-- Upload form. Note enctype attribute! -->
+                <form action="{% url "upload" %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p>{{ form.non_field_errors }}</p>
+                        <p>{{ form.infragram_image.label_tag }} </p>
+                        <p>
+                                {{ form.infragram_image.errors }}
+                                {{ form.infragram_image }}
+                        </p>
+
+                        <p>{{ form.original_image.label_tag }} </p>
+                        <p>
+                                {{ form.original_image.errors }}
+                                {{ form.original_image }}
+                        </p>
+
+                        <p>{{ form.location_description.label_tag }} </p>
+                        <p>
+                                {{ form.location_description.errors }}
+                                {{ form.location_description }}
+                        </p>
+
+                         <p>{{ form.plant_description.label_tag }} </p>
+                        <p>
+                                {{ form.plant_description.errors }}
+                                {{ form.plant_description }}
+                        </p>
+
+                         <p>{{ form.general_notes.label_tag }} </p>
+                        <p>
+                                {{ form.general_notes.errors }}
+                                {{ form.general_notes }}
+                        </p>
+
+                         <p>{{ form.date_taken.label_tag }} </p>
+                        <p>
+                                {{ form.date_taken.errors }}
+                                {{ form.date_taken }}
+                        </p>
+                        <p>{{ form.latitude.label_tag }} </p>
+                        <p>
+                                {{ form.latitude.errors }}
+                                {{ form.latitude }}
+                        </p>
+                         <p>{{ form.longitude.label_tag }} </p>
+                        <p>
+                                {{ form.longitude.errors }}
+                                {{ form.longitude }}
+                        </p>
+                        <p>{{ form.ndvi_score.label_tag }} </p>
+                        <p>
+                                {{ form.ndvi_score.errors }}
+                                {{ form.ndvi_score }}
+                        </p>
+
+
+                        <p><input type="submit" value="Upload" /></p>
+                </form>
+
+        </body>
+
+</html>
+~        

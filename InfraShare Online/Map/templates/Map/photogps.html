@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+  <head>
+    <title>InfraShare Mobile</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8"><link rel="stylesheet" href="{% static 'Map/css/style.css' %}" type="text/css">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+  </head>
+  <body>
+    <div style="font-size:40px;" >
+      <center>InfraShare Mobile</center>
+      <center>Companion Web Application</center>
+
+    </div>
+    <br><br><br>
+
+    <div style="height: 80%; width: 90%; margin: auto;" id="map-canvas"></div>
+    
+    
+
+    <!-- <script src="{% static 'js/photogps.js' %}"></script> -->
+    <script type="text/javascript">
+    var map,
+    dropbox = document.getElementById('map-canvas'),
+    log = document.getElementById('log'),
+    stat_div = document.getElementById('status'),
+    curr_info, // current information dialog open
+    done = 0, // done processing the current set of files?
+    processing = 0, // how many images have been processed in this batch
+    reader = new FileReader(), // for reading files dragged into browser
+    img = new Image(), // Image object used to render a thumbnail
+    maxWidth = 100, // maximum width of thumbnail image on marker
+    maxHeight = 100; // maximum height of thumbnail image on marker
+
+// TODO: Pull the latitude and longitude from the marker
+    function doImages() {    
+          {% for doc in documents %}
+              var img = "{{ doc.infragram_image.url }}";
+              var lat = "{{ doc.latitude }}";
+              var lon = "{{ doc.longitude }}";
+              var notes = "{{ doc.general_notes }}";
+              var location = "{{ doc.location_description }}";
+              var plant = "{{ doc.plant_description }}";
+              var original = "{{ doc.original_image.url }}";
+              var datetaken = "{{ doc.date_taken }}";
+              var dateuploaded = "{{ doc.date_uploaded }}";
+              var ndviscore = "{{ doc.ndvi_score }}";
+              var id = "{{ doc.id }}";
+              var other_image = "{{ doc.original_image.url }}";
+              marker = new google.maps.Marker({
+                map: map,
+                flat: true
+              });
+              marker.setPosition(new google.maps.LatLng(parseFloat(lat), parseFloat(lon)));
+              addInfoWindow(marker, img, "400", "325", lat, lon, notes, location, plant, original, datetaken, dateuploaded, ndviscore, id, other_image);
+              
+          {% endfor %}
+    }
+
+/**
+ * Add a marker to the Google Map
+ * @param {[type]} marker         The Marker to add
+ * @param {[type]} thumbnail_data The thumbnail image data/URL
+ * @param {[type]} width          Width of the thumbnail
+ * @param {[type]} height         Height of the thumbnail
+ * @param {[type]} lat            latitude of marker
+ * @param {[type]} lon            longitude of marker
+ */
+function addInfoWindow(marker, thumbnail_data, width, height, lat, lon, notes, location, plant, original, datetaken, dateuploaded, ndviscore, id, other_image) {  
+  var infoWindow = new google.maps.InfoWindow({
+    content: '<img class="info_window" style="width:' +
+              width + 'px; height: ' + height + 'px;" id="' + id + '"; src="' + thumbnail_data + '"/>' +
+              '<div style="display:inline-block;"><b>Latitude: </b> ' + lat + '<br><br><b>Longitude:</b> ' + lon + '<br><br><b>Location Description: </b>' + location + 
+              '<br><br><b>Plant Description:</b> ' + plant + '<br><br><b>Date Taken: </b>' + datetaken + '<br><br><b>Date Uploaded: </b>' + dateuploaded + '<br><br><b>NDVI Score: </b>' + ndviscore + '<br><br><b>Notes: </b>' + notes +'<br><br><input type="button" onclick="changeImage(' + '\'' + id + '\'' + ',' + '\'' + thumbnail_data + '\'' + ',' + '\'' +
+                other_image + '\'' + ')" id="button' + id +'" value="Show Original Image" ></input></div>'
+  });
+
+  google.maps.event.addListener(marker, 'click', function () {
+    if(curr_info) curr_info.close();
+    infoWindow.open(map, marker);
+    curr_info = infoWindow;
+  });
+ 
+}
+
+function changeImage(id, thumbnail_data, other_image){
+  var image = document.getElementById(id);
+  var button = document.getElementById("button" + id)
+    if (image.src.match(thumbnail_data)) {
+        image.src = other_image;
+        button.value = "Show Analyzed Image";
+
+    } else {
+        image.src = thumbnail_data;
+        button.value = "Show Original Image";
+    }
+}
+
+/**
+ * Initialize the Google Map
+ */
+function initialize() {
+  var mapOptions = {
+    zoom: 14,
+    center: new google.maps.LatLng(40.344366, -74.652224),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    scaleControl: true
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  doImages();
+}
+
+function drop(e) {
+  no_bubble(e);
+  var files = e.target.files || e.dataTransfer.files;
+  processing = files.length;
+  updateStatus();
+  process_file(files, 0, files.length);
+  return false;
+}
+
+// Prevent event from bubbling up
+function no_bubble(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+
+// do initializations after everything is defined
+ dropbox.addEventListener("drop", drop, false);
+ dropbox.addEventListener("dragleave", no_bubble, false);
+ dropbox.addEventListener("dragexit", no_bubble, false);
+ dropbox.addEventListener("dragover", no_bubble, false);
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script> 
+
+  </body>
+</html>
+
