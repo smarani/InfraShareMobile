@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ProgressBar android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/listViewTitle"
+        android:layout_alignParentTop="true" />
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></ImageView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.14">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Score is:"
+            android:id="@+id/textView1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/scoreHolder" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:weightSum="1"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/buttonLoadPicture"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.30"
+            android:text="Show NDVI"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#0f5f23"
+            android:background="#b2cb9b"
+            android:layout_margin="10dp"
+            ></Button>
+
+        <Button
+            android:id="@+id/buttonReset"
+            android:layout_width="119dp"
+            android:layout_height="94dp"
+            android:text="Show Original"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#0e5e26"
+            android:background="#b2cb9b"
+            android:layout_margin="10dp"
+            android:layout_weight="0.30"></Button>
+
+        <Button
+            android:id="@+id/buttonUpload"
+            android:layout_width="119dp"
+            android:layout_height="94dp"
+            android:text="Upload"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#0e5e26"
+            android:background="#b2cb9b"
+            android:layout_margin="10dp"
+            android:layout_weight="0.30"></Button>
+    </LinearLayout>
+
+</LinearLayout>

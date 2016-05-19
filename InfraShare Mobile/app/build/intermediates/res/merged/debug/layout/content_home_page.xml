@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView2"
+        android:layout_weight="0.13" />
+
+    <TextView android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="InfraShare Mobile"
+        android:textSize="50dp"
+        android:paddingBottom="50px"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textColor="#096c11"
+        android:textStyle="bold"
+        android:layout_weight="0.13" />
+    <Button android:id="@+id/buttonUpload"
+        android:layout_width="224dp"
+        android:layout_height="75dp"
+        android:text="Upload Photo From Gallery"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textColor="#06621a" />
+
+    <Button
+        android:layout_width="223dp"
+        android:layout_height="wrap_content"
+        android:text="Use Webcam"
+        android:id="@+id/buttonWebcam"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.13"
+        android:textStyle="bold"
+        android:textColor="#06621a"
+
+        android:onClick="openWebcam"/>
+
+    <Button
+        android:layout_width="223dp"
+        android:layout_height="wrap_content"
+        android:text="View Map"
+        android:id="@+id/buttonMap"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textColor="#06621a"
+        android:onClick="openMap"
+        android:layout_weight="0.12" />
+
+
+</LinearLayout>

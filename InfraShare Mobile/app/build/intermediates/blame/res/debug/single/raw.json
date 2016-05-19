@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/stephmarani/Documents/Thesis Folder/thesisdemo/Infragram/app/build/intermediates/res/merged/debug/raw/camera_click.ogg",
+        "source": "/Users/stephmarani/Documents/Thesis Folder/thesisdemo/Infragram/app/src/main/res/raw/camera_click.ogg"
+    },
+    {
+        "merged": "/Users/stephmarani/Documents/Thesis Folder/thesisdemo/Infragram/app/build/intermediates/res/merged/debug/raw/gtm_analytics",
+        "source": "/Users/stephmarani/Documents/Thesis Folder/thesisdemo/Infragram/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.4.0/res/raw/gtm_analytics"
+    }
+]
