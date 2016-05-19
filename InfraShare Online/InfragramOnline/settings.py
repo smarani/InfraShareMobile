@@ -21,7 +21,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "_-gskg0k63$ebz%vy&d$c(b$i3(oa++bk_9q_sa*m+2)+s-4!a"
+SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,9 +44,9 @@ AWS_QUERYSTRING_AUTH = False
 # AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 # AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
 
-AWS_ACCESS_KEY_ID = 'AKIAJDM6YK27XH6NRIVA'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'infragram-online'
+AWS_ACCESS_KEY_ID = 
+AWS_SECRET_ACCESS_KEY = 
+AWS_STORAGE_BUCKET_NAME = 
 
 MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
